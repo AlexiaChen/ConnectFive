@@ -1,4 +1,4 @@
-﻿Build started 2014/9/1 16:44:08.
+﻿Build started 2014/9/17 11:04:19.
      1>Project "C:\Users\Yajun Dou\Desktop\ege_connect_five\connect_five\connect_five.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "Debug\connect_five.lastbuildstate".
@@ -34,4 +34,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.83
+Time Elapsed 00:00:01.81

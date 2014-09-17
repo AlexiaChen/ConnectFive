@@ -7,22 +7,31 @@
 int main(){
 
 	game_welcome();
+	
+	
+		
+		while(!kbhit()){
 
-	while(!kbhit()){
-		
-		char ch;
-		
-		if((ch=getch()) == 'y'){
-			run_game();
-		  }else if((ch=getch()) == 'n'){
-			closegraph();
-			return 0;
-		   }
-      delay_ms(500);
+			char ch;
+
+			if((ch=getch()) == 'y'){
+				init_board();
+				break;
+			}else if((ch=getch()) == 'n'){
+				closegraph();
+				return 0;
+			}
+
+		}
+
+    for(;is_run();delay_fps(60)){
+
+		run_game();
 	}
 	
 	
 	
+	closegraph();
 	
 	return 0;
 }

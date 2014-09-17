@@ -6,7 +6,7 @@
 enum STATUS{
 	C_BLACK = 1,
 	C_WHITE = 2,
-	C_SPACE = 3
+	C_BLANK = 3
 };
 
 typedef struct Position{
@@ -18,5 +18,6 @@ typedef struct Position{
 bool run_game();
 
 void update_score();
+void init_board();
 
 #endif
