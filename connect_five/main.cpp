@@ -6,7 +6,7 @@
 
 int main(){
 
-	game_welcome();
+	    game_welcome();
 	
 	
 		
