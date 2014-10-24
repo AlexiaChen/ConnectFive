@@ -33,7 +33,7 @@ typedef enum _BWS{
 
 int current_s;
 
-#define TEST 1  //debug switch turned on
+#define TEST 0  //debug switch turned on
 
 void gen_pos(BoardPos (*pos)[15]){
 
@@ -129,12 +129,53 @@ void init_board(){
 	gen_pos(pos);
 }
 
-int get_pos(int msg_x,int msg_y){
+void find_min(int (*dis)[15], int *min_x, int *min_y){
+
+	int min_distance = dis[0][0];
+	
+	for(int x = 0; x < 15; ++x){
+		for(int y = 0; y < 15; ++y){
+
+			if(min_distance > dis[x][y]){
+
+				min_distance = dis[x][y];
+
+				*min_x = x;
+				*min_y = y;
+			}
+
+		}
+
+	}
+
+
+
+}
+
+//let the position of chess align the position of board
+void get_right_pos(int msg_x,int msg_y,int *board_min_x, int *board_min_y){
+
+	int distance_seq[15][15] = {0};   
+	
+	
+	for(int x = 0; x < 15; ++x){
+		for(int y = 0; y < 15; ++y){
+			
+			int d =  (int)sqrt((double)((msg_x-pos[x][y].x)*(msg_x-pos[x][y].x)+(msg_y-pos[x][y].y)*(msg_y-pos[x][y].x)));
+			distance_seq[x][y] = d;
+
+		}
+			
+	}
+
+	int min_x, min_y;
+	
+	find_min(distance_seq,&min_x,&min_y);
+	
+	*board_min_x = min_x;
+	*board_min_y = min_y;
 
 	
-	//int d =  (int)sqrt((double)((msg_x-X2)*(msg_x-X2)+(msg_y-Y2)*(msg_y-Y2)));
-
-	return 0;
 }
 
 
@@ -149,34 +190,32 @@ bool run_game(){
 	    
 		while(mousemsg()){
 			 msg = getmouse();
-			//msg = GetMouseMsg();
-			/*int msg_x, msg_y;
-			mousepos(&msg_x,&msg_y);*/
 			
-			if(msg.is_down() && current_s == C_BLACK_S /*&& d <= 5 */ ){
+			if(msg.is_down() && current_s == C_BLACK_S ){
 
-				C_POS pos;
-				/*int msg_x, msg_y;
+				C_POS c_pos;
+				int board_x,board_y;
 				
-				mousepos(&msg_x,&msg_x);*/
-				pos.x = msg.x;/*msg_x*/
-				pos.y = msg.y;/*msg_x*/
+				get_right_pos(msg.x,msg.y,&board_x,&board_y);
+				c_pos.x = pos[board_x][board_y].x;
+				c_pos.y = pos[board_x][board_y].y;
 				
-				draw_chess(&pos,BLACK);
+				draw_chess(&c_pos,BLACK);
 				blk_step_count++;
 				update_status(white_status);
 				update_score();
 			}
 
-			else if(msg.is_down() && current_s == C_WHITE_S /*&&  d <= 5*/){
-				C_POS pos;
-				/*int msg_x, msg_y;
+			else if(msg.is_down() && current_s == C_WHITE_S){
+				C_POS c_pos;
+				
+				int board_x,board_y;
 
-				mousepos(&msg_x,&msg_x);*/
-				pos.x = msg.x;/*msg_x*/
-				pos.y = msg.y;/*msg_x*/
+				get_right_pos(msg.x,msg.y,&board_x,&board_y);
+				c_pos.x = pos[board_x][board_y].x;
+				c_pos.y = pos[board_x][board_y].y;
 
-				draw_chess(&pos,WHITE);
+				draw_chess(&c_pos,WHITE);
 				wht_step_count++;
 				update_status(black_status);
 				update_score();
