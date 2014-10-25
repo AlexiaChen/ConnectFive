@@ -3,6 +3,7 @@
 #include <graphics.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 
 //chess board is 15*15 standard 
@@ -33,7 +34,7 @@ typedef enum _BWS{
 
 int current_s;
 
-#define TEST 0  //debug switch turned off
+#define TEST 0  //debug switch turned off , this switch prepare for developer
 
 void gen_pos(BoardPos (*pos)[15]){
 
@@ -185,7 +186,7 @@ void get_right_pos(int msg_x,int msg_y,int *board_min_x, int *board_min_y){
 	for(int x = 0; x < 15; ++x){
 		for(int y = 0; y < 15; ++y){
 			
-			int d =  (int)sqrt((double)((msg_x-pos[x][y].x)*(msg_x-pos[x][y].x)+(msg_y-pos[x][y].y)*(msg_y-pos[x][y].x)));
+			int d =  (int)sqrt((double)(abs(msg_x - pos[x][y].x)*abs(msg_x - pos[x][y].x)+abs(msg_y - pos[x][y].y)*abs(msg_y - pos[x][y].x)));
 			distance_seq[x][y] = d;
 
 		}
@@ -204,11 +205,6 @@ void get_right_pos(int msg_x,int msg_y,int *board_min_x, int *board_min_y){
 
 
 bool run_game(){
-	
-	
-	
-	
-	
 	
 	    mouse_msg msg = {0};
 	    
