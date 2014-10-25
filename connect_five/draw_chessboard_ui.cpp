@@ -33,7 +33,7 @@ typedef enum _BWS{
 
 int current_s;
 
-#define TEST 0  //debug switch turned on
+#define TEST 0  //debug switch turned off
 
 void gen_pos(BoardPos (*pos)[15]){
 
@@ -79,13 +79,33 @@ void draw_chess(C_POS* position,color_t color){
 	fillellipse(position->x,position->y,15,15);
 }
 
+#if TEST
+void test_pos_draw(){
+
+	for(int x = 0; x < 15; x++){
+
+		for(int y = 0; y < 15; y++){
+            
+			C_POS c_pos;
+			c_pos.x = pos[x][y].x;
+			c_pos.y = pos[x][y].y;
+
+			draw_chess(&c_pos,WHITE);
+
+        }
+    }
+}
+
+#endif
+
+
 void update_score(){
 
 	sprintf(blk_cnt,black,blk_step_count);
 	sprintf(wht_cnt,white,wht_step_count);
 
-	xyprintf(450,50,blk_cnt);
-	xyprintf(450,90,wht_cnt);
+	xyprintf(480,50,blk_cnt);
+	xyprintf(480,90,wht_cnt);
 
 }
 
@@ -127,6 +147,10 @@ void init_board(){
 	update_score();
 	update_status(black_status);
 	gen_pos(pos);
+    
+    #if TEST
+	test_pos_draw();
+    #endif
 }
 
 void find_min(int (*dis)[15], int *min_x, int *min_y){
