@@ -1,13 +1,13 @@
-#include "draw_chessboard_ui.h"
-
 #include <graphics.h>
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
+#include "draw_chessboard_ui.h"
+
 
 //chess board is 15*15 standard 
-static int chessboard[15][15] = {C_BLANK};
+static int chessboard_status[15][15] = {C_BLANK};
 
 typedef struct _POS_BOARD{
 	int x;
@@ -16,10 +16,14 @@ typedef struct _POS_BOARD{
 
 static BoardPos pos[15][15]={0};
 
-static char *  black        = "black step count: %d";
-static char *  white        = "white step count: %d";
-static char *  black_status = "black user";
-static char *  white_status = "white user";
+static char*  black        = "black step count: %d";
+static char*  white        = "white step count: %d";
+static char*  black_status = "black user";
+static char*  white_status = "white user";
+
+
+static char*  black_win = "black user WIN";
+static char*  white_win = "white user WIN";
 
 char blk_cnt[100];
 char wht_cnt[100];
@@ -203,6 +207,128 @@ void get_right_pos(int msg_x,int msg_y,int *board_min_x, int *board_min_y){
 	
 }
 
+void update_board_status(int x, int y, enum STATUS status_t){
+
+	chessboard_status[x][y] = status_t;
+};
+
+bool is_win(int x,int y,  enum STATUS status_t){
+
+	// 8 directions status searching on board
+	int left_to_right = 0, up_to_down = 0; 
+	int upper_left_to_lower_right = 0, upper_right_to_lower_left = 0;
+	
+	int temp_x = x, temp_y = y;
+	
+	while(chessboard_status[temp_x][temp_y] == status_t && temp_y >=0 && temp_y <= 14){
+		
+		left_to_right++;
+
+		temp_y--;
+
+
+	}
+
+	temp_x = x, temp_y = y;
+	
+	while(chessboard_status[temp_x][temp_y] == status_t && temp_y >=0 && temp_y <= 14){
+
+		left_to_right++;
+
+		temp_y++;
+
+
+	}
+
+	if(left_to_right == 5)   return true;
+
+	temp_x = x, temp_y = y;
+	while(chessboard_status[temp_x][temp_y] == status_t && temp_x >=0 && temp_x <= 14){
+
+		up_to_down++;
+
+		temp_x--;
+
+
+	}
+
+	temp_x = x, temp_y = y;
+	while(chessboard_status[temp_x][temp_y] == status_t && temp_x >=0 && temp_x <= 14){
+
+		up_to_down++;
+
+		temp_x++;
+
+
+	}
+
+	if(up_to_down == 5)  return true;
+
+	temp_x = x, temp_y = y;
+	while(chessboard_status[temp_x][temp_y] == status_t 
+		&& temp_x >= 0 && temp_x <= 14
+		&& temp_y >= 0 && temp_y <= 14){
+
+		upper_left_to_lower_right++;
+
+		temp_x--;
+		temp_y--;
+
+
+	}
+
+	temp_x = x, temp_y = y;
+	while(chessboard_status[temp_x][temp_y] == status_t 
+		&& temp_x >= 0 && temp_x <= 14
+		&& temp_y >= 0 && temp_y <= 14){
+
+			upper_left_to_lower_right++;
+
+			temp_x++;
+			temp_y++;
+
+
+	}
+
+	if(upper_left_to_lower_right == 5)  return true;
+
+	temp_x = x, temp_y = y;
+	while(chessboard_status[temp_x][temp_y] == status_t 
+		&& temp_x >= 0 && temp_x <= 14
+		&& temp_y >= 0 && temp_y <= 14){
+
+			upper_right_to_lower_left++;
+
+			temp_x--;
+			temp_y++;
+
+
+	}
+
+	temp_x = x, temp_y = y;
+	while(chessboard_status[temp_x][temp_y] == status_t 
+		&& temp_x >= 0 && temp_x <= 14
+		&& temp_y >= 0 && temp_y <= 14){
+
+			upper_right_to_lower_left++;
+
+			temp_x++;
+			temp_y--;
+
+
+	}
+
+	if(upper_right_to_lower_left == 5) return true;
+
+
+
+
+	return false;
+
+
+
+};
+
 
 bool run_game(){
 	
@@ -221,6 +347,9 @@ bool run_game(){
 				c_pos.y = pos[board_x][board_y].y;
 				
 				draw_chess(&c_pos,BLACK);
+				update_board_status(board_x,board_y,C_BLACK);
+                if(is_win(board_x,board_y,C_BLACK)) xyprintf(480,120,black_win);
+				
 				blk_step_count++;
 				update_status(white_status);
 				update_score();
@@ -236,6 +365,9 @@ bool run_game(){
 				c_pos.y = pos[board_x][board_y].y;
 
 				draw_chess(&c_pos,WHITE);
+				update_board_status(board_x,board_y,C_WHITE);
+				if(is_win(board_x,board_y,C_WHITE)) xyprintf(480,120,white_win);
+				
 				wht_step_count++;
 				update_status(black_status);
 				update_score();
