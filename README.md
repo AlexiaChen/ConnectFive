@@ -1,4 +1,4 @@
-ConnectFive
+﻿ConnectFive
 ===========
 
 A Game Based on an External Library called EGE
@@ -13,5 +13,8 @@ And Meeting Unix Design philosophy. You could know that How to use them by seein
 
 
 
-GOAL:
-Add AI module using Alpha–beta pruning algorithm.
+RoadMap:
+1. Add AI module using Alpha–beta pruning algorithm.
+
+
+The Progress of the Project: NOT Complete!
