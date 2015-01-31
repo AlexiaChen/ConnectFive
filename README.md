@@ -12,7 +12,7 @@ last version: http://misakamm.bitbucket.org/index.htm . Or you could find it in 
 
 ##Document
 
-Unfortunately, the manual of the library(interface Description) just has Chinese version only. But, these interfaces are keep simple and stupid for Beginner I think, And Meeting Unix Design philosophy. You could know that How to use them by seeing 
+Unfortunately, the manual of the library(interface Description) just only has Chinese version. But, these interfaces are keep simple and stupid for Beginner I think, And Meeting Unix Design philosophy. You could know that How to use them by seeing 
 their names,immediately.
 
 ##RoadMap
