@@ -21,7 +21,7 @@ their names,immediately.
 
 ##RoadMap
 
-###1. Add AI module using Alpha–beta pruning algorithm.
+1. Add AI module using Alpha–beta pruning algorithm.
 
 ##Progress
 
