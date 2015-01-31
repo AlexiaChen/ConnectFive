@@ -12,7 +12,7 @@ last version: http://misakamm.bitbucket.org/index.htm . Or you could find it in 
 
 ##ScreenShot
 
-<img src="https://raw.githubusercontent.com/AlexiaChen/ConnectFive/master/screenshot.jpg">
+<img src="https://raw.githubusercontent.com/AlexiaChen/ConnectFive/master/screenshot.JPG">
 
 ##Document
 
