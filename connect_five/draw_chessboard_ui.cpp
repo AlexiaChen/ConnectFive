@@ -16,10 +16,8 @@ typedef struct _POS_BOARD{
 
 static BoardPos pos[15][15]={0};
 
-static char*  black        = "black step count: %d";
-static char*  white        = "white step count: %d";
-static char*  black_status = "black user";
-static char*  white_status = "white user";
+static char*  black_turn = "black user's turn";
+static char*  white_turn = "white user's turn";
 
 
 static char*  black_win = "black user WIN";
@@ -104,17 +102,7 @@ void test_pos_draw(){
 #endif
 
 
-void update_score(){
-
-	sprintf(blk_cnt,black,blk_step_count);
-	sprintf(wht_cnt,white,wht_step_count);
-
-	xyprintf(480,50,blk_cnt);
-	xyprintf(480,90,wht_cnt);
-
-}
-
-void update_status(char *status){
+void update_turn(char *status){
 	outtextxy(30,30,status);
 
 	switch(status[0]){
@@ -142,15 +130,15 @@ void draw_chessboard(){
 	for(; y <= 480;y += 30)
 		line(20,y,440,y);
 
-	outtextxy(30,30,black_status);
+	outtextxy(30,30,black_turn);
 
 }
 
 
 void init_board(){
 	draw_chessboard();
-	update_score();
-	update_status(black_status);
+	
+	update_turn(black_turn);
 	gen_pos(pos);
     
     #if TEST
@@ -348,11 +336,12 @@ bool run_game(){
 				
 				draw_chess(&c_pos,BLACK);
 				update_board_status(board_x,board_y,C_BLACK);
-                if(is_win(board_x,board_y,C_BLACK)) xyprintf(480,120,black_win);
 				
-				blk_step_count++;
-				update_status(white_status);
-				update_score();
+				if(is_win(board_x,board_y,C_BLACK)) xyprintf(480,120,black_win);
+
+				update_turn(white_turn);
+				
+				
 			}
 
 			else if(msg.is_down() && current_s == C_WHITE_S){
@@ -366,11 +355,12 @@ bool run_game(){
 
 				draw_chess(&c_pos,WHITE);
 				update_board_status(board_x,board_y,C_WHITE);
-				if(is_win(board_x,board_y,C_WHITE)) xyprintf(480,120,white_win);
 				
-				wht_step_count++;
-				update_status(black_status);
-				update_score();
+				if(is_win(board_x,board_y,C_WHITE)) xyprintf(480,120,white_win);
+
+				update_turn(black_turn);
+				
+				
 			}
 
 			
