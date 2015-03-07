@@ -7,12 +7,12 @@ A Game Based on an External Library called EGE
 
 ###1.EGE
 
-EGE(Easy Graphics Engine).It is a Easy Grapgics Library on windows for C/C++ newbie.You Could download it here with the 
+EGE(Easy Graphics Engine).It is an Easy Grapgics Library on windows for C/C++ newbie.You Could download it here with the 
 last version: http://misakamm.bitbucket.org/index.htm . Or you could find it in ege_lib this Directory as you can see. 
 
 ##ScreenShot
 
-<img src="https://raw.githubusercontent.com/AlexiaChen/ConnectFive/master/screenshot.jpg">
+<img src="https://raw.githubusercontent.com/AlexiaChen/ConnectFive/master/screenshot.JPG">
 
 ##Document
 
@@ -21,7 +21,7 @@ their names,immediately.
 
 ##RoadMap
 
-###1. Add AI module using Alpha–beta pruning algorithm.
+1. Add AI module using Alpha–beta pruning algorithm.
 
 ##Progress
 
