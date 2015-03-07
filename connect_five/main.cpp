@@ -1,7 +1,7 @@
 #include <graphics.h>
 
-#include "welcome_ui.h"
-#include "draw_chessboard_ui.h"
+#include "board_ui.h"
+#include "game_logic.h"
 
 
 

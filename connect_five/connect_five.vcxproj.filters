@@ -18,18 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="welcome_ui.cpp">
+    <ClCompile Include="board_ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw_chessboard_ui.cpp">
+    <ClCompile Include="game_logic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="welcome_ui.h">
+    <ClInclude Include="board_ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw_chessboard_ui.h">
+    <ClInclude Include="game_logic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

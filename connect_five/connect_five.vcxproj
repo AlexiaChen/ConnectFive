@@ -77,13 +77,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="draw_chessboard_ui.cpp" />
+    <ClCompile Include="board_ui.cpp" />
+    <ClCompile Include="game_logic.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="welcome_ui.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="draw_chessboard_ui.h" />
-    <ClInclude Include="welcome_ui.h" />
+    <ClInclude Include="board_ui.h" />
+    <ClInclude Include="game_logic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
